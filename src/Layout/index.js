@@ -13,7 +13,7 @@ function Layout() {
       <Header />
       <div className="container">
         {/*routes go here */
-        <Router>
+        
           <Switch>
             <Route exact path="/">
               <Home />
@@ -31,7 +31,7 @@ function Layout() {
               <NotFound />  
             </Route>
           </Switch>
-        </Router>
+        
         }
         {/* TODO: Implement the screen starting here */}
       </div>
