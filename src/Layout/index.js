@@ -5,7 +5,7 @@ import CreateDeck from "./CreateDeck";
 import ViewDeck from "./ViewDeck";
 import StudyScreen from "./StudyScreen";
 import NotFound from "./NotFound";
-import { Switch, Router, Link, Route } from "react-router-dom/cjs/react-router-dom";
+import { Switch, Router, Link, Route } from "react-router-dom";
 
 function Layout() {
   return (
@@ -13,23 +13,25 @@ function Layout() {
       <Header />
       <div className="container">
         {/*routes go here */
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/decks/new">
-            <CreateDeck />
-          </Route>
-          <Route exact path="/decks/:deckId">
-            <ViewDeck />
-          </Route>
-          <Route path="/decks/:deckId/study">
-            <StudyScreen />
-          </Route>
-          <Route>
-            <NotFound />  
-          </Route>
-        </Switch>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/decks/new">
+              <CreateDeck />
+            </Route>
+            <Route exact path="/decks/:deckId">
+              <ViewDeck />
+            </Route>
+            <Route path="/decks/:deckId/study">
+              <StudyScreen />
+            </Route>
+            <Route>
+              <NotFound />  
+            </Route>
+          </Switch>
+        </Router>
         }
         {/* TODO: Implement the screen starting here */}
       </div>
