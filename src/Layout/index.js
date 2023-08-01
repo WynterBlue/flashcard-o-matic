@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import Home from "./Home";
+import Home from "./Home/Home";
 import CreateDeck from "./CreateDeck";
 import ViewDeck from "./ViewDeck";
 import StudyScreen from "./StudyScreen";
