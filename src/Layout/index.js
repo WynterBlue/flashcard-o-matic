@@ -7,6 +7,8 @@ import StudyScreen from "./Study/StudyScreen";
 import NotFound from "./NotFound";
 import { Switch, Router, Link, Route } from "react-router-dom";
 import EditDeck from "./Decks/EditDeck";
+import AddCard from "./Cards/AddCard";
+import EditCard from "./Cards/EditCard";
 
 function Layout() {
   return (
@@ -28,8 +30,14 @@ function Layout() {
             <Route path="/decks/:deckId/study">
               <StudyScreen />
             </Route>
-            <Route exact path="/decks/:deckId/edit">
+            <Route path="/decks/:deckId/edit">
               <EditDeck />
+            </Route>
+            <Route path="/decks/:deckId/cards/new">
+              <AddCard />
+            </Route>
+            <Route path="/decks/:deckId/cards/:cardId/edit">
+              <EditCard />
             </Route>
             <Route>
               <NotFound />  

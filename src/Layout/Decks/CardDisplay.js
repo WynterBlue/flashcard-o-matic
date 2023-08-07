@@ -1,5 +1,6 @@
 import React from "react";
 import { deleteCard } from "../../utils/api";
+import { Link } from "react-router-dom/";
 
 function CardDisplay({card}) {
     const handDelete = (id) => {
@@ -14,7 +15,7 @@ function CardDisplay({card}) {
             <p>{card.front}</p>
             <p>{card.back}</p>
             <div>
-                <button className="btn btn-secondary">Edit</button>
+                <Link to={`/decks/${card.deckId}/cards/${card.id}/edit`} className="btn btn-secondary">Edit</Link>
                 <button className="btn btn-danger" onClick={() => handDelete(card.id)}>Delete</button>
             </div>
             <hr />

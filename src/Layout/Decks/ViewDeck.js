@@ -39,7 +39,7 @@ function ViewDeck() {
             <div>
             <Link to={`/decks/${currentDeck.id}/edit`} className="btn btn-secondary">Edit</Link>
             <Link to={`/decks/${currentDeck.id}/study`} className="btn btn-primary">Study</Link>
-            <button className="btn btn-primary">Add Cards</button>
+            <Link to={`/decks/${currentDeck.id}/cards/new`} className="btn btn-primary">Add Cards</Link>
             <button className="btn btn-danger" onClick={() => handDelete(currentDeck.id)}>Delete</button>
             </div>
             </div>

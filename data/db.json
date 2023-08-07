@@ -11,8 +11,8 @@
       "id": 2
     },
     {
-      "name": "Test Deck",
-      "description": "This deck is for testing",
+      "name": "I've edited this deck",
+      "description": "If it worked, then this text will be different",
       "id": 3
     }
   ],
@@ -53,6 +53,12 @@
       "back": "b",
       "deckId": 1,
       "id": 7
+    },
+    {
+      "front": "this has been edited",
+      "back": "hello",
+      "deckId": 3,
+      "id": 8
     }
   ]
 }

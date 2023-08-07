@@ -1,31 +1,94 @@
-import React, {useEffect, useState} from "react";
-import { useRouteMatch, Link } from "react-router-dom/";
-import { readDeck } from "../../utils/api";
+import React, { useEffect, useState } from "react";
+import { useRouteMatch, Link, useHistory } from "react-router-dom/";
+import { readDeck, updateDeck } from "../../utils/api";
 
 function EditDeck() {
-    const {params} = useRouteMatch()
-    const [currentDeck, setCurrentDeck] = useState({})
-    useEffect(() => {
-        readDeck(params.deckId).then(data => setCurrentDeck(data))
-    },[])
-    if(!currentDeck.id){
-        return (
-            <p>Loading...</p>
-        )
-    }
+  const history = useHistory();
+  const { params } = useRouteMatch();
+  const [currentDeck, setCurrentDeck] = useState({});
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+  });
 
-    return(
-        <div>
-            <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="/">Home</a></li>
-                <li className="breadcrumb-item"><a href={`/decks/${currentDeck.id}/`}>{currentDeck.name}</a></li>
-                <li className="breadcrumb-item active" aria-current="page">Edit Deck</li>
-            </ol>
-            </nav>
-            <p>edit your deck!</p>
-        </div>
-    )
+  useEffect(() => {
+    readDeck(params.deckId).then((data) => {
+      setCurrentDeck(data);
+      setFormData(data);
+    });
+  }, [params.deckId]);
+
+  function handleInput(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
+  function handleFormSubmit(event) {
+    event.preventDefault(); // prevents page from refreshing by default
+    // console.log(formData); //sanity check
+    updateDeck(formData).then((updatedDeck) => {
+      history.push(`/decks/${updatedDeck.id}`);
+    });
+  }
+  
+  if (!currentDeck.id) {
+    return <p>Loading...</p>;
+  }
+
+  return (
+    <div>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <a href="/">Home</a>
+          </li>
+          <li className="breadcrumb-item">
+            <a href={`/decks/${currentDeck.id}/`}>{currentDeck.name}</a>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Edit Deck
+          </li>
+        </ol>
+      </nav>
+      <form name="createDeck" onSubmit={handleFormSubmit}>
+        <h2>Create Deck</h2>
+        <label htmlFor="name">Name</label>
+        <br />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Deck Name"
+          value={formData.name}
+          onChange={handleInput}
+        />
+        <br />
+        <br />
+        <label htmlFor="description">Description</label>
+        <br />
+        <textarea
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Brief description of the deck"
+          value={formData.description}
+          onChange={handleInput}
+        />
+        <br />
+        <button
+          onClick={() => history.push("/")}
+          type="cancel"
+          className="btn btn-secondary"
+        >
+          Cancel
+        </button>
+        <button className="btn btn-primary" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 }
 
-export default EditDeck
+export default EditDeck;
