@@ -1,34 +1,32 @@
 import React, {useEffect, useState} from "react";
 import { createCard, readDeck } from "../../utils/api";
 import { useRouteMatch, Link, useHistory } from "react-router-dom/";
+import CardForm from "./CardForm";
 
 function AddCard() {
-    const history = useHistory()
     const {params} = useRouteMatch()
     const [currentDeck, setCurrentDeck] = useState({})
-    let initialFormData = {
+    let emptyFormData = {
         front: '',
         back: ''
     }
-    const [formData, setFormData] = useState(initialFormData)
+    
     useEffect(() => {
         readDeck(params.deckId).then(data => setCurrentDeck(data))
     },[params.deckId])
-    console.log(currentDeck)
-    function handleInput(event) {
-        setFormData({
-            ...formData, 
-            [event.target.name]: event.target.value
-        })
-    }
+
+    // function handleInput(event) {
+    //     setFormData({
+    //         ...formData, 
+    //         [event.target.name]: event.target.value
+    //     })
+    // }
     
-    
-    function handleFormSubmit(event) {
-        event.preventDefault()// prevents page from refreshing by default
-        console.log(formData)//sanity check
-        createCard(params.deckId, formData)
-        setFormData({...initialFormData})//resets form to initial value
+    async function addCard(newCard) {
+        console.log(newCard)//sanity check
+        await createCard(currentDeck.id, newCard)
     }
+
     //add a toast when i have time
     if(!currentDeck.id){
         return (
@@ -37,42 +35,7 @@ function AddCard() {
     }
     return(
         <div>
-            <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="/">Home</a></li>
-                <li className="breadcrumb-item"><a href={`/decks/${currentDeck.id}/`}>{currentDeck.name}</a></li>
-                <li className="breadcrumb-item active" aria-current="page">Add Card</li>
-            </ol>
-            </nav>
-            <h3>{currentDeck.name}: Add Card</h3>
-            <form name="addCard" onSubmit={handleFormSubmit}>
-                <label htmlFor="front">Front</label>
-                <br />
-                <textarea 
-                type="text" 
-                name="front" 
-                id="front" 
-                placeholder="Front side of card"
-                className="form-control"
-                value={formData.front} 
-                onChange={handleInput} 
-                />
-                <br />
-                <label htmlFor="back">Back</label>
-                <br />
-                <textarea
-                type="text" 
-                name="back" 
-                id="back" 
-                placeholder="Back side of card"
-                className="form-control"
-                value={formData.back} 
-                onChange={handleInput} 
-                 />
-                 <br />
-                 <Link to={`/decks/${currentDeck.id}`} className="btn btn-secondary">Done</Link>
-                 <button className="btn btn-primary mx-2" type="submit">Save</button>
-            </form>
+            <CardForm breadCrumb={`Add Card`} headerText={`${currentDeck.name}: Add Card`} initialFormData={emptyFormData} handleSubmit={addCard} submitButtonText={"Save"} cancelButtonText={"Done"}/>
         </div>
     )
 }

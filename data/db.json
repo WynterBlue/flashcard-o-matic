@@ -65,6 +65,18 @@
       "back": "aaaaa",
       "deckId": 3,
       "id": 9
+    },
+    {
+      "front": "it's finally working i think im gonna cry",
+      "back": "new card for testing",
+      "deckId": 1,
+      "id": 10
+    },
+    {
+      "front": "testing ",
+      "back": "if this still works",
+      "deckId": null,
+      "id": 12
     }
   ]
 }
