@@ -52,7 +52,7 @@ function EditDeck() {
         </ol>
       </nav>
       <form name="createDeck" onSubmit={handleFormSubmit}>
-        <h2>Create Deck</h2>
+        <h2>Edit Deck</h2>
         <label htmlFor="name">Name</label>
         <br />
         <input
@@ -60,10 +60,10 @@ function EditDeck() {
           name="name"
           id="name"
           placeholder="Deck Name"
+          className="form-control"
           value={formData.name}
           onChange={handleInput}
         />
-        <br />
         <br />
         <label htmlFor="description">Description</label>
         <br />
@@ -72,8 +72,10 @@ function EditDeck() {
           name="description"
           id="description"
           placeholder="Brief description of the deck"
+          className="form-control"
           value={formData.description}
           onChange={handleInput}
+          rows={5}
         />
         <br />
         <button
@@ -83,7 +85,7 @@ function EditDeck() {
         >
           Cancel
         </button>
-        <button className="btn btn-primary" type="submit">
+        <button className="btn btn-primary mx-2" type="submit">
           Submit
         </button>
       </form>

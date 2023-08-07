@@ -53,6 +53,7 @@ function AddCard() {
                 name="front" 
                 id="front" 
                 placeholder="Front side of card"
+                className="form-control"
                 value={formData.front} 
                 onChange={handleInput} 
                 />
@@ -64,12 +65,13 @@ function AddCard() {
                 name="back" 
                 id="back" 
                 placeholder="Back side of card"
+                className="form-control"
                 value={formData.back} 
                 onChange={handleInput} 
                  />
                  <br />
                  <Link to={`/decks/${currentDeck.id}`} className="btn btn-secondary">Done</Link>
-                 <button className="btn btn-primary" type="submit">Save</button>
+                 <button className="btn btn-primary mx-2" type="submit">Save</button>
             </form>
         </div>
     )

@@ -11,14 +11,15 @@ function CardDisplay({card}) {
         }
     }
     return(
-        <div>
-            <p>{card.front}</p>
-            <p>{card.back}</p>
-            <div>
-                <Link to={`/decks/${card.deckId}/cards/${card.id}/edit`} className="btn btn-secondary">Edit</Link>
+        <div className="p-3 border">
+            <div className="d-flex justify-content-between">
+                <p className="mx-2 text-secondary-emphasis" style={{ width: "45%" }}>{card.front}</p>
+                <p className="mx-2 text-secondary-emphasis" style={{ width: "45%" }}>{card.back}</p>
+            </div>
+            <div className="d-flex justify-content-end">
+                <Link to={`/decks/${card.deckId}/cards/${card.id}/edit`} className="btn btn-secondary mx-2">Edit</Link>
                 <button className="btn btn-danger" onClick={() => handDelete(card.id)}>Delete</button>
             </div>
-            <hr />
         </div>
     )
 }

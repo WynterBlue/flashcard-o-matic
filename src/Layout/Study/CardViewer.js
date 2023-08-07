@@ -46,7 +46,7 @@ function CardViewer({deck}) {
     }
 
     return(
-        <div className="card">
+        <div className="card p-3">
             <h4>Card {index+1} of {cards.length}</h4>
             {!next ? <p>{cards[index].front}</p> : <p>{cards[index].back}</p>}
             <div>

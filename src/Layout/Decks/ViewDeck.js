@@ -33,15 +33,19 @@ function ViewDeck() {
                 <li className="breadcrumb-item active" aria-current="page">{currentDeck.name}</li>
             </ol>
             </nav>
-            <div className="card">
-            <h4>{currentDeck.name}</h4>
-            <p>{currentDeck.description}</p>
-            <div>
-            <Link to={`/decks/${currentDeck.id}/edit`} className="btn btn-secondary">Edit</Link>
-            <Link to={`/decks/${currentDeck.id}/study`} className="btn btn-primary">Study</Link>
-            <Link to={`/decks/${currentDeck.id}/cards/new`} className="btn btn-primary">Add Cards</Link>
-            <button className="btn btn-danger" onClick={() => handDelete(currentDeck.id)}>Delete</button>
-            </div>
+            <div className="pb-2">
+                <h4>{currentDeck.name}</h4>
+                <p>{currentDeck.description}</p>
+                <div className="d-flex justify-content-between">
+                    <div>
+                        <Link to={`/decks/${currentDeck.id}/edit`} className="btn btn-secondary">Edit</Link>
+                        <Link to={`/decks/${currentDeck.id}/study`} className="btn btn-primary m-2">Study</Link>
+                        <Link to={`/decks/${currentDeck.id}/cards/new`} className="btn btn-primary ">Add Cards</Link>
+                    </div>
+                    <div>
+                        <button className="btn btn-danger" onClick={() => handDelete(currentDeck.id)}>Delete</button>
+                    </div>
+                </div>
             </div>
             <h2>Cards</h2>
             <div className="card">

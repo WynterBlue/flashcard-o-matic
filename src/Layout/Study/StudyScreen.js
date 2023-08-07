@@ -29,7 +29,7 @@ function StudyScreen(){
             </ol>
             </nav>
             <div>
-                <h2>{currentDeck.name}: Study</h2>
+                <h2>Study: {currentDeck.name}</h2>
                 <CardViewer deck={currentDeck}/>
             </div>
         </div>
