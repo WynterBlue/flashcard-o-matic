@@ -55,10 +55,16 @@
       "id": 7
     },
     {
-      "front": "this has been edited",
-      "back": "hello",
+      "front": "New card",
+      "back": "has been added!",
       "deckId": 3,
       "id": 8
+    },
+    {
+      "front": "wooo",
+      "back": "aaaaa",
+      "deckId": 3,
+      "id": 9
     }
   ]
 }

@@ -40,7 +40,7 @@ function CardViewer({deck}) {
         <div>
             <h3>Not enough cards</h3>
             <p>You need at least 3 cards to study. There are {cards.length} cards in this deck.</p>
-            <Link to="" className="btn btn-primary">Add Cards</Link>
+            <Link to={`/decks/${deck.id}/cards/new`} className="btn btn-primary">Add Cards</Link>
         </div>
        )
     }
